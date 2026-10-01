@@ -11,6 +11,14 @@ use crate::{
 pub struct InitializeCourse<'info> {
     #[account(
         init, //Create this account if it doesn't already exist, allocate its required space, fund it appropriately, assign ownership to this program, and initialize its Anchor account discriminator.
+        // init
+        // │
+        // ├── create account
+        // ├── allocate space
+        // ├── fund account
+        // ├── assign owner
+        // └── initialize Anchor account
+        
         seeds = [
             b"course", // the seed is a byte string that is used to generate the PDA
             instructor.key().as_ref(), // the seed is the instructor's public key

@@ -18,7 +18,7 @@ use solana_transaction::Transaction;
 use solana_pubkey::Pubkey;
 
 
-#[test]
+#[test] 
 fn test_update() {
     let mut svm = LiteSVM::new();
     svm.add_program_from_file(
@@ -42,13 +42,12 @@ fn test_update() {
         ],
         &crown::ID,
     );
-
     let data  = crown::instruction::InitializeCourse{
         course_id: 1,
         title : "Solana Developmet".to_string(),
         price : 1_000_000_000,
     }.data();
-
+    
 
     let accounts: Vec<AccountMeta> = vec![
         AccountMeta::new(course_pda, false),
@@ -72,18 +71,15 @@ fn test_update() {
     //    ├── Instructor
     //    └── System Program
     let message =  Message::new(
-        &[
-            // istruction1
-            // istruction2
-            // istruction3
-            instruction
-            ],
+        &[instruction],
 
         Some(&instructor.pubkey()), // the fee payer of the transaction not nesseraly the feepayer of the accout that will be created 
+    );
 
-    let tx = Transaction::new(
-        &[&instructor ], // list of all the signers that are required here
-         message, 
+
+    let tx  =  Transaction::new(
+        &[&instructor],
+        message,
         svm.latest_blockhash()
     );
 

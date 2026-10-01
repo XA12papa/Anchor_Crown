@@ -9,7 +9,7 @@ pub use error::*;
 pub use instructions::*;
 pub use state::*;
 
-declare_id!("4zY1qLGxTGU2zvPbwtTAk7vFB2jvdNXXZYWua7u5N8rj");
+declare_id!("CZt27CqLNR7AL8DWZtfMeuX59hsuZdRmszApvX15vpsB");
 
 
 #[program]
@@ -25,6 +25,7 @@ pub mod crown {
         InitializeCourse::handler(ctx, course_id, title, price)
     }
 
+
     pub fn update_course(
         ctx : Context<UpdateCourse>,
         _course_id: u64,
@@ -33,4 +34,12 @@ pub mod crown {
     ) -> Result<()> {
         UpdateCourse::handler(ctx, _course_id,new_title, new_price)
     }
+
+    pub fn terminate_course(
+        ctx : Context<TerminateCourse>,
+        course_id : u64,
+    ) -> Result<()>{
+        TerminateCourse::handler(ctx, course_id)
+    }
+
 }

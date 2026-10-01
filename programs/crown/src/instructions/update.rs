@@ -47,9 +47,10 @@ impl<'info> UpdateCourse<'info> {
             CrownError::TitleTooLong
         );
         let course = &mut ctx.accounts.course;
+        
 
         course.title = new_title;
-        course.price = new_price;
+        course.price = new_price;   
 
 
         Ok(())
